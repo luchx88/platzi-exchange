@@ -1,0 +1,28 @@
+Según su documentación oficial los filtros dentro de VueJS dejaron de existir, en su lugar reecomiendan usar propiedades computadas o métodos.
+
+Aquí les dejo el código para que puedan simular el uso de filtros siguiendo la documentación de Vue, el archivo main.js ya no se toca, ahí ya no hacemos nada, pero en el componente PxAssetsTable.vue hay que agregar importar dollarFilter y hay que agregar el método, que en este caso lo llame dollar para simular el filtro de la clase, el cual va a devolver lo que la función dollarFilter devuelva:
+
+import { dollarFilter } from "@/filters";
+
+exportdefault {
+  name: "PxAssetsTable",
+
+  props: {
+    assets: {
+      type: Array,
+      default: () => []
+    }
+  },
+
+  methods: {
+
+    dollar(value) {
+      return dollarFilter(value);
+    }
+
+  }
+
+};
+Y simplemente en el template lo usamos como un método normal:
+
+<td>{{ dollar(a.priceUsd) }}</td>
